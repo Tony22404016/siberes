@@ -33,6 +33,33 @@ class ServiceController extends Controller
         return view('Add_Data.Add_Service');
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'service_image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'service_name' => 'required',
+            'service_description' => 'required',
+            'service_price' => 'required',
+            'stock' => 'required',
+            'location' => 'required',
+        ]);
+
+        $fileName = time() . '.' . $request->service_image->extension();
+        $request->service_image->move(public_path('uploads/product'), $fileName);
+
+        // Simpan ke database harus kaya gini biar gambarnya jalan
+        Service::create([
+            'service_image'         => $fileName, // simpan nama file, bukan object
+            'service_name'          => $request->service_name,
+            'service_description'   => $request->service_description,
+            'service_price'         => $request->service_price,
+            'stock'         => $request->stock,
+            'location'      => $request->location, 
+        ]);
+
+        return redirect()->route('service.index');
+    }
+
     public function edit($id)
     {
         $service = Service::findOrFail($id);

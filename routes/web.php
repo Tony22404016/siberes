@@ -7,6 +7,8 @@ use App\Http\Controllers\RegisAdminController;
 use App\Http\Controllers\LoginAdminController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PartnerController;
+
 
 
 Route::get('/', [ServiceController::class, 'home'])->name('product.home');
@@ -35,8 +37,22 @@ Route::post('/Admin/Login', [LoginAdminController::class, 'login'])->name('Login
 Route::get('/addProduct', [ServiceController::class, 'create'])->name('product.form');
 Route::post('/addProduct', [ServiceController::class, 'store'])->name('service.store');
 Route::get('/service/{id}/edit-service', [ServiceController::class, 'edit'])->name('service.edit');
-Route::put('/product/{id}', [ServiceController::class, 'update'])->name('service.update');
-Route::delete('/product/{destroy}', [ServiceController::class, 'destroy'])->name('service.destroy');
+Route::put('/service/{id}', [ServiceController::class, 'update'])->name('service.update');
+Route::delete('/service/{destroy}', [ServiceController::class, 'destroy'])->name('service.destroy');
+
+
+//pengelolaan data orders
+Route::get('/order/{id}/edit-order', [OrderController::class, 'edit'])->name('order.edit');
+Route::put('/order/{id}', [OrderController::class, 'update'])->name('order.update');
+Route::delete('/order/{destroy}', [OrderController::class, 'destroy'])->name('order.destroy');
+
+
+//pengelolaan data mitra
+Route::get('/AddPartner', [PartnerController::class, 'create'])->name('partner.form');
+Route::post('/AddPartner', [PartnerController::class, 'store'])->name('partner.store');
+Route::get('/partner/{id}/edit-partner', [PartnerController::class, 'edit'])->name('partner.edit');
+Route::put('/partner/{id}', [PartnerController::class, 'update'])->name('partner.update');
+Route::delete('/partner/{destroy}', [PartnerController::class, 'destroy'])->name('partner.destroy');
 
 
 //autentikasi route
@@ -49,4 +65,6 @@ Route::middleware(['auth:web'])->group(function () {
 //autentikasi admin
 Route::middleware(['auth:admin'])->group(function(){
     Route::get('/Services', [ServiceController::class, 'index'])->name('service.index');
+    Route::get('/Orders', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/Parners', [PartnerController::class, 'index'])->name('partner.index');
 });

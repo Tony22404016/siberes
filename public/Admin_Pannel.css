@@ -309,7 +309,7 @@
         td {
             padding: 16px;
             border-bottom: 1px solid var(--border);
-            font-size: 14px;
+            font-size: 10px;
         }
 
         tr:last-child td {

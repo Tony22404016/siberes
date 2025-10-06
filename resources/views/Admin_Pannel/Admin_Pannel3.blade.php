@@ -19,7 +19,7 @@
         <div class="header">
             <h1 class="page-title">
                 <i class="fas fa-shopping-cart"></i>
-                Service Management
+                Order Management
             </h1>
 
             @auth
@@ -40,16 +40,16 @@
         
         <div class="stats-container">
             <div class="stat-card">
-                <h3>Service Quantity</h3>
-                <p>{{$service_count}}</p>
+                <h3>Partner Quantity</h3>
+                <p>{{$JumlahTukang}}</p>
             </div>
             <div class="stat-card">
-                <h3>Service In Stock</h3>
-                <p>{{$instock}}</p>
+                <h3>Partner Ready</h3>
+                <p>{{$TukangBersedia}}</p>
             </div>
             <div class="stat-card">
-                <h3>Service Out of Stock</h3>
-                <p>{{$outstock}}</p>
+                <h3>Partner Bussy</h3>
+                <p>{{$TukangSibuk}}</p>
             </div>
         </div>
         
@@ -58,40 +58,37 @@
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search Product..." id="searchInput" oninput="dataFilter()">
             </div>
-            <a href="/addProduct" style="text-decoration: none;">
-                <button class="btn btn-add">
-                    <i class="fas fa-plus"></i> Add Service
-                </button>
-            </a>
         </div>
         
         <div class="table-container">
             <table id="productTable">
                 <thead>
                     <tr>
-                        <th>Service_ID</th>
-                        <th>Service_Image</th>
-                        <th>Service_Name</th>
-                        <th>Service_Price</th>
-                        <th>Partner_Quantity</th>
-                        <th>Location</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone_Number</th>
+                        <th>Bank_Account</th>
+                        <th>Address</th>
+                        <th>Skill</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($services as $service )
+                    @foreach ($Tukangs as $Tukang )
                     <tr>
-                        <td>{{$service->service_id}}</td>
+                        <td>{{$Tukang->id}}</td>
+                        <td>{{$Tukang->name }}</td>
+                        <td>{{$Tukang->email}}</td>
+                        <td>{{$Tukang->phone_number}}</td>
+                        <td>{{$Tukang->bank_account_number}}</td>
+                        <td>{{$Tukang->address}}</td>
+                        <td>{{$Tukang->skills}}</td>
+                        <td>{{$Tukang->status}}</td>
                         <td>
-                            <img class="h-10 w-10 rounded-full" src="{{ asset('uploads/product/' . $service->service_image) }}" alt="Service Image">
-                        </td>
-                        <td>{{$service->service_name}}</td>
-                        <td>Rp{{ number_format($service->service_price, 0, ',' ,'.')}}</td>
-                        <td>{{$service->stock}}</td>
-                        <td>{{$service->location}}</td>
-                        <td>
-                            <a href="{{route('service.edit', $service->service_id)}}"><button class="btn btn-edit"><i class="fas fa-edit"></i> Edit</button></a>
-                            <form action="{{route('service.destroy',$service->service_id)}}" method="POST">
+                            <a href="{{route('partner.edit', $Tukang->id)}}"><button class="btn btn-edit"><i class="fas fa-edit"></i> Edit</button></a>
+                            <form action="{{route('partner.destroy',$Tukang->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-delete" onclick = "return confirm('Yakin hapus?')"><i class="fas fa-trash"></i> Delete</button>

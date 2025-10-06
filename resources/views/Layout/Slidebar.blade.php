@@ -21,27 +21,27 @@
         <div class="sidebar-menu">
             <div class="menu-item active">
                 <i class="fas fa-chart-line"></i>
-                <a href="" style="text-decoration: none; color:#333"><span>Dashboard</span></a>
+                <a href="/Orders" style="text-decoration: none; color:#333"><span>Dashboard</span></a>
             </div>
             <div class="menu-item">
                 <i class="fas fa-shopping-cart"></i>
-                <a href="" style="text-decoration: none; color:#333"><span>Orders</span></a>
+                <a href="/Orders" style="text-decoration: none; color:#333"><span>Orders</span></a>
             </div>
             <div class="menu-item">
                 <i class="fas fa-users"></i>
-                <a href="" style="text-decoration: none; color:#333"><span>Users</span></a>
+                <a href="/Users" style="text-decoration: none; color:#333"><span>Users</span></a>
             </div>
             <div class="menu-item">
                 <i class="fas fa-hard-hat"></i>
-                <a href="/admins" style="text-decoration: none; color:#333"><span>Partners</span></a>
+                <a href="/Parners" style="text-decoration: none; color:#333"><span>Partners</span></a>
             </div>
             <div class="menu-item">
                 <i class="fas fa-screwdriver-wrench"></i>
-                <a href="" style="text-decoration: none; color:#333"><span>Services</span></a>
+                <a href="/Services" style="text-decoration: none; color:#333"><span>Services</span></a>
             </div>
             <div class="menu-item">
                 <i class="fas fa-users-cog"></i>
-                <a href="/admins" style="text-decoration: none; color:#333"><span>Admins</span></a>
+                <a href="/Admins" style="text-decoration: none; color:#333"><span>Admins</span></a>
             </div>
 
             <div class="menu-item">

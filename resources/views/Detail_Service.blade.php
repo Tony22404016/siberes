@@ -60,13 +60,14 @@
     <!-- Deskripsi Produk -->
     <div class="border-t border-gray-200 p-8 md:p-12">
       <h2 class="text-xl font-semibold text-[#1e4a7b] mb-3 relative inline-block">
-        Deskripsi Produk
+        Deskripsi Layanan
         <span class="block w-10 h-[3px] bg-[tomato] mt-1 rounded"></span>
       </h2>
 
       <div class="text-gray-700 text-justify text-[15px] leading-relaxed mt-4">
-        <p>{{ $services->service_description }}</p>
-        <p class="my-2">-</p>
+        <!-- biar cetakan layour mengikuti form input -->
+        <p>{!! nl2br(e($services->service_description)) !!}</p>
+        <p class="my-2">_____________________________</p>
         <p>Dapatkan garansi resmi 1 hari untuk pemesanan hari ini.</p>
       </div>
     </div>

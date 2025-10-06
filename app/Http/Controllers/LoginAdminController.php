@@ -27,7 +27,7 @@ class LoginAdminController extends Controller
         if(Auth::guard('admin')->attempt($credentials)){
 
             $request->session()->regenerate();
-            return redirect()->intended('/Services');
+            return redirect()->intended('/Orders');
         }
 
         return back()->withErrors([

@@ -11,12 +11,12 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $Orders = Order::with(['user', 'product'])->get();
+        $Orders = Order::with(['user', 'service'])->get();
         $totalOrder = Order::count();
         $on_prosess = Order::where('status', 'diproses')->count();
         $finish = Order::where('status', 'selesai')->count();
 
-        return view('Admin_Pannel.Admin_Pannel1', [
+        return view('Admin_Pannel.Admin_Pannel2', [
             'Orders' => $Orders,
             'totalOrder' => $totalOrder,
             'on_prosess' => $on_prosess,
@@ -49,6 +49,13 @@ class OrderController extends Controller
         } elseif (substr($number, 0, 3) === '+62') {
             $number = substr($number, 1); // hilangkan tanda +
         }
+        else {
+            // Kalau formatnya aneh (misal tanpa 0 atau 62)
+            $number = '62' . $number;
+        }
+
+        // Masukkan kembali hasil normalisasi ke data validasi
+        $validated['whatsapp_number'] = $number;
 
         // otomatis ambil user login
         $validated['user_id'] = Auth::id();
@@ -57,5 +64,10 @@ class OrderController extends Controller
 
         return redirect()->route('checkout.form', ['id' => $validated['service_id']])
                  ->with('success', 'Pesanan berhasil dibuat!');
+    }
+
+    public function destroy($id){
+        Order::find($id)->delete();
+        return redirect()->route('order.index');
     }
 }
