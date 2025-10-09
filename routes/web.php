@@ -11,6 +11,7 @@ use App\Http\Controllers\PartnerController;
 
 
 
+
 Route::get('/', [ServiceController::class, 'home'])->name('product.home');
 Route::get('/detail/{id}', [ServiceController::class, 'detail'])->name('service.detail');
 
@@ -55,6 +56,10 @@ Route::put('/partner/{id}', [PartnerController::class, 'update'])->name('partner
 Route::delete('/partner/{destroy}', [PartnerController::class, 'destroy'])->name('partner.destroy');
 
 
+//pengelolaan data user
+Route::delete('/user/{destroy}', [RegisUserController::class, 'destroy'])->name('user.destroy');
+
+
 //autentikasi route
 Route::middleware(['auth:web'])->group(function () { 
     Route::post('/checkout', [OrderController::class, 'store'])->name('checkout.store');
@@ -67,4 +72,6 @@ Route::middleware(['auth:admin'])->group(function(){
     Route::get('/Services', [ServiceController::class, 'index'])->name('service.index');
     Route::get('/Orders', [OrderController::class, 'index'])->name('order.index');
     Route::get('/Parners', [PartnerController::class, 'index'])->name('partner.index');
+    Route::get('/Users', [RegisUserController::class, 'index'])->name('user.index');
+    Route::get('/export/orders', [OrderController::class, 'exportOrders'])->name('export.orders');
 });

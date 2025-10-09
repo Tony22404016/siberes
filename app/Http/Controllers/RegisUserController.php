@@ -15,7 +15,7 @@ class RegisUserController extends Controller
         $newUsersToday = User::whereDate('created_at', now()->today())->count();
         $newUsersThisMonth = User::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
         
-        return view('Admin_Pannel.Admin_Pannel3', [
+        return view('Admin_Pannel.Admin_Pannel4', [
             'users'=>$users,
             'totalUser'=>$totalUser,
             'newUsersToday'=>$newUsersToday,
@@ -55,20 +55,4 @@ class RegisUserController extends Controller
         return redirect()->route('user.index');
     }
 
-    //menampilkan form update status user
-    public function edit($id)
-    {
-        $user = User::find($id);
-        return view('Update.Update_User', compact('user'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'status'=>'required',
-        ]);
-
-        User::find($id)->update($request->all());
-        return redirect()->route('user.index'); //Arahkan ulang (redirect) pengguna ke URL barang.index".
-    }
 }

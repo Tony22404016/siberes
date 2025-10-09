@@ -185,7 +185,7 @@
         <div class="register-section">
             <h2>Daftar Sebagai Mitra</h2>
             <p>Daftarkan diri Anda sekarang untuk mendapatkan akses penuh ke semua layanan kami. Proses pendaftaran cepat dan mudah, hanya membutuhkan beberapa menit saja.</p>
-            <a href="{{route('register.form')}}" class="btn">Buat Akun Baru</a>
+            <a href="/AddPartner" class="btn">Buat Akun Baru</a>
         </div>
         
         <footer>

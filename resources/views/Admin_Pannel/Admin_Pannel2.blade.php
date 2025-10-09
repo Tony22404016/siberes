@@ -58,6 +58,12 @@
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search Product..." id="searchInput" oninput="dataFilter()">
             </div>
+
+            <a href="{{ route('export.orders') }}" style="text-decoration: none;">
+                <button class="btn btn-add">
+                    <i class="fas fa-download"></i>download CSV
+                </button>
+            </a>
         </div>
         
         <div class="table-container">

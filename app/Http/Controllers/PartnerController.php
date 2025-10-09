@@ -23,7 +23,7 @@ class PartnerController extends Controller
     }
 
     public function store(Request $request){
-        $request->validate([
+        $validated = $request->validate([
             'name'=>'required',
             'email'=>'required',
             'phone_number'=>'required',
@@ -33,7 +33,24 @@ class PartnerController extends Controller
             'status'=>'nullable',
         ]);
 
-        Partner::create($request->all());
+        $number = $request->phone_number;
+
+        //Normalisasi format ke 628xxxxxxxxx
+        $number = preg_replace('/[^0-9+]/', '', $number); // hapus spasi atau simbol lain
+
+        if (substr($number, 0, 1) === '0') {
+            $number = '62' . substr($number, 1);
+        } elseif (substr($number, 0, 3) === '+62') {
+            $number = substr($number, 1); // hilangkan tanda +
+        }
+        else {
+            // Kalau formatnya aneh (misal tanpa 0 atau 62)
+            $number = '62' . $number;
+        }
+
+        $validated['phone_number'] = $number;
+
+        Partner::create($validated);
 
         return redirect()->back()->with('success', 'Selamat Anda telah Terdaftar sebagai Mitra. kami akan segera menghubungi anda jika ada pesanan');
     }
